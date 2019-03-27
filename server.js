@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const users = require('./routes/api/users');
 
@@ -20,7 +21,12 @@ mongoose
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send('Mantis plagairism detection system'));
+//passport middleware 
+app.use(passport.initialize());
+
+//passport config
+require('./config/passport')(passport);
+
 
 const port = 3000; 
 

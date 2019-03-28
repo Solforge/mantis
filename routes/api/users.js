@@ -6,6 +6,12 @@ const keys = require('../../config/keys');
 const User = require('../../model/User');
 const passport = require('passport');
 
+//load register input validation 
+const validationRegisterInput = require('../../validation/register');
+
+//load login input validation 
+const validationLoginInput = require('../../validation/login');
+
 // @route GET api/users/test 
 // @desc tests post route 
 // @access private route
@@ -15,11 +21,20 @@ router.get('/test', (req, res) => res.json({ msg: "user working" }));
 // @desc register user
 // @access public
 router.post('/register', (req, res) => {
+
+    const { errors, isValid } = validationRegisterInput(req.body);
+
+    //first line of validation 
+    if (!isValid) { 
+        return res.status(400).json(errors);
+    }
+
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
             return res.status(400).json({ email: "Email Already Exists" });
         } else {
             const NewUser = new User({
+                name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
             });
@@ -43,8 +58,17 @@ router.post('/register', (req, res) => {
 // @access public
 
 router.post(('/login'), (req, res) => {
+ 
+    const { errors, isValid } = validationLoginInput(req.body);
+
+    //first line of validation 
+    if (!isValid) { 
+        return res.status(400).json(errors);
+    }
+
     const email = req.body.email;
     const password = req.body.password;
+
     //find user with email
     User.findOne({ email: email }).then(user => {
         if (!user) {
@@ -58,7 +82,9 @@ router.post(('/login'), (req, res) => {
                     //user matched 
                     //create jwt payload 
                     const payload = {
-                        id: user.id
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
                         //we can add more
                     }
                     //sign token
@@ -84,9 +110,14 @@ router.post(('/login'), (req, res) => {
 // @route get api/users/current 
 // @desc return current user 
 // @access private 
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json(req.user)
-})
+router.get('/current', passport.authenticate('jwt', { session: false }), 
+(req, res) => {
+    res.json({
+        id: req.user.id,
+        email: req.user.email,
+        name: req.user.name,
+    });
+});
 
 
 module.exports = router; 

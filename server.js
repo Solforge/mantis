@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const course = require('./routes/api/course');
 
 //initialize a variable to express 
 const app = express();
@@ -28,9 +30,11 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 
-const port = 3000; 
+const port = 5000; 
 
 //use routes 
 app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/course', course);
 
 app.listen(port, () => console.log(`server is running on port ${port}`));

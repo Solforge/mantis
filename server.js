@@ -30,7 +30,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 
-const port = 5000; 
+const port = 3001; 
 
 //use routes 
 app.use('/api/users', users);

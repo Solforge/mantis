@@ -22,6 +22,9 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    joinKey: {
+        type: String
+    },
     date: { 
         type: Date,
         default: Date.now

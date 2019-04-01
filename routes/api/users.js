@@ -21,6 +21,7 @@ router.get('/test', (req, res) => res.json({ msg: 'user working' }))
 // @desc register user
 // @access public
 router.post('/register', (req, res) => {
+  
   const { errors, isValid } = validationRegisterInput(req.body)
 
   // first line of validation
@@ -37,7 +38,8 @@ router.post('/register', (req, res) => {
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        user_type: req.body.user_type
+        user_type: req.body.user_type,
+        joinKey: req.body.joinKey
       })
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -84,7 +86,8 @@ router.post('/login', (req, res) => {
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
-          user_type: user.user_type
+          user_type: user.user_type,
+          joinKey: user.joinKey
         }
         // sign token
         jwt.sign(
@@ -117,7 +120,8 @@ router.get(
       first_name: req.user.first_name,
       last_name: req.user.last_name,
       email: req.user.email,
-      user_type: req.user.user_type
+      user_type: req.user.user_type,
+      joinKey: req.user.joinKey
     })
   }
 )

@@ -2,7 +2,7 @@
 
 .header-bar {
     background: linear-gradient(135deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%); 
-    height: 80px;
+    height: 70px;
 }
 
 .header-bar .signin-button {
@@ -32,7 +32,8 @@
 
 .header-bar .logo-mantis-main {
     margin-left: 110px;
-}
+    font-weight: ligher;
+} 
 
 /* Styles for the sign in page */
 
@@ -243,7 +244,7 @@ form .student-password {
 
 .student-card {
     width: 700px;
-    height: 1050px;
+    height: 870px;
     margin: 100px auto;
     transition: 0.3s;
 }

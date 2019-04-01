@@ -3,10 +3,53 @@ import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 class Student extends React.Component {
 
-  render () {
+  constructor(props) {
+    super(props);
+    this.state = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      confirmEmail: '',
+      password: '',
+      confirmPassword: '',
+      user_type:'',
+      errors: {}
+    }
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+  }
+
+  onChange = (e) => { 
+    this.setState({[e.target.name] : e.target.value})
+  }
+
+  onSubmit(e) {
+    
+    e.preventDefault();
+
+    const newUser = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      confirmEmail: this.state.confirmEmail,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+      user_type: 'student'
+    };
+  
+    axios
+      .post("/api/users/register", newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.response.data));
+  }
+
+  render() {
     return (
       <Card className='student-card'>
         <Link to='./'>
@@ -16,23 +59,8 @@ class Student extends React.Component {
         </Link>
 
         <h1>Create a Student Profile</h1>
-        <p className='student-id-info'>
-          <u>Class ID Information</u>
-        </p>
-        <p className='student-info'>
-          All students must be enrolled in an active class. To enroll in a
-          class, please enter the class ID number that you were given by your
-          instructor. Please note that the key and pincodeare case-sensitive. If
-          you do not have this information, or the information you are entering
-          appears to be incorrect, please contact your instructor.
-        </p>
-        <form>
-          <TextField
-            label='Class ID'
-            className='class-id'
-            type='Class ID'
-            margin='normal'
-          />
+        <form
+          onSubmit={this.onSubmit}>
           <p className='student-user-info'>
             <u>User Information</u>
           </p>
@@ -42,12 +70,18 @@ class Student extends React.Component {
             className='student-first-name'
             type='First Name'
             margin='normal'
+            name='first_name'
+            value={this.state.first_name}
+            onChange={this.onChange}
           />
           <TextField
             label='Last Name'
             className='student-last-name'
             type='Last Name'
             margin='normal'
+            name='last_name'
+            value={this.state.last_name}
+            onChange={this.onChange}
           />
           <TextField
             label='Email Address'
@@ -60,12 +94,16 @@ class Student extends React.Component {
             className='student-email'
             type='emial'
             margin='normal'
+            name='email'
+            value={this.state.email}
+            onChange={this.onChange}
           />
           <TextField
             label='User Type'
             className='user-type'
             type='school'
             margin='normal'
+            name='user_type'
             defaultValue='Student'
             InputProps={{
               readOnly: true
@@ -76,12 +114,18 @@ class Student extends React.Component {
             className='student-password'
             type='password'
             margin='normal'
+            name='password'
+            value={this.state.password}
+            onChange={this.onChange}
           />
           <TextField
             label='Confirm Password'
             className='student-password'
             type='password'
             margin='normal'
+            name='confirmPassword'
+            value={this.state.confirmPassword}
+            onChange={this.onChange}
           />
 
           <Button

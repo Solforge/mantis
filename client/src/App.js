@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import './App.css'
 
+//components 
 import Main from './component/main/Main'
 import SignIn from './component/signin/Signin'
 import Create from './component/create/Create'

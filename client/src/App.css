@@ -1,0 +1,320 @@
+/* Styles for company landing page */
+
+.header-bar {
+    background: linear-gradient(135deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%); 
+    height: 80px;
+}
+
+.header-bar .signin-button {
+    background-color: white;
+    width: 100px;
+    border-radius: 180px;
+    height: 35px;
+    margin-left: 78%;
+    position: fixed;
+}
+
+.link {
+    color: rgb(128,137,255);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: white;
+}
+    
+.name {
+    font-weight: regular;
+    font-size: 50px;
+    float: right;
+    margin-left: 10px;
+}
+
+.header-bar .logo-mantis-main {
+    margin-left: 110px;
+}
+
+/* Styles for the sign in page */
+
+.card {
+    width: 400px;
+    height: 500px;
+    margin: 160px auto;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card p { 
+    font-size: 40px; 
+    margin-left: 40px; 
+    margin-top: 40px; 
+    margin-bottom: 20px; 
+}
+
+.login-form .email-field { 
+    width: 80%; 
+    margin-left: 40px;
+    margin-bottom: 20px; 
+}
+
+.login-form .password-field { 
+    width: 80%; 
+    margin-left: 40px; 
+    margin-bottom: 40px; 
+}
+
+.card .newUser { 
+    font-size: 12px; 
+    margin-top: -1px; 
+    margin-bottom: 40px; 
+
+}
+
+.card .login-button { 
+    margin-left: 40px;
+    width: 100px; 
+}
+
+.card .company-name-signin { 
+    font-size: 55px; 
+    text-decoration: none; 
+    display: inline-block; 
+    margin-left: -2px;    
+}
+
+.card .logo-mantis-signin { 
+    margin-bottom: -40px; 
+    margin-left: 120px;
+}
+
+/* Styles for create account (student or instructor) */
+
+.create-card { 
+    width: 640px;
+    height:  410px;
+    margin: 180px auto;
+    transition: 0.3s;    
+}
+
+.create-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+h1 { 
+    font-size: 40px; 
+    font-weight: lighter;
+    margin-left: 40px; 
+    margin-top: -40px; 
+}
+
+.logo-mantis { 
+    margin-left: 240px; 
+    margin-top: -40px; 
+}
+
+.create-info-text { 
+    margin-left: 40px; 
+    margin-top: 15px; 
+    margin-right: 40px; 
+}
+
+.create-student { 
+    font-size: 30px; 
+    margin-left: 40px; 
+    margin-top: 20px;
+}
+
+.create-instructor { 
+    font-size: 30px; 
+    margin-left: 40px; 
+    margin-top: 20px;
+}
+
+.create-click-here { 
+    font-size: 12px; 
+    margin-left: 40px; 
+    margin-top: 30px; 
+}
+  
+.company-name-create { 
+    font-size: 55px; 
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+a { 
+    text-decoration: none;
+    color: black;
+}
+
+a:hover { 
+    color: #A18AFF;
+}
+
+/* Styles for instructor page */
+
+.instructor-card {
+    width: 700px;
+    height: 1020px;
+    margin: 100px auto;
+    transition: 0.3s;
+}
+
+.instructor-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.company-name-instructor {
+    margin-bottom: 60px;
+    font-size: 60px;  
+    text-decoration: none; 
+    margin-left: 20px; 
+}
+
+.instructor-id-info {
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.instructor-info {
+    font-size: 12px;
+    text-align: justify;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+form .join-key {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .instructor-password { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-first-name { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-last-name { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-email { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;   
+}
+
+form .user-type {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;   
+}
+
+form .student-password {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;   
+}
+
+.instructor-card .instructor-button { 
+    margin-left: 40px;
+    margin-top: 30px; 
+}
+
+.logo-mantis .company-name { 
+    margin-left: 20px; 
+}
+
+/* styles for student page */
+
+.student-card {
+    width: 700px;
+    height: 1050px;
+    margin: 100px auto;
+    transition: 0.3s;
+}
+
+.student-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.student-id-info {
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.student-info {
+    font-size: 12px;
+    text-align: justify;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+form .class-id {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .class-enrollment {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+.student-user-info { 
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+form .student-first-name {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-last-name {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-email {
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-university { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+form .student-password { 
+    width: 88%;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+.student-card .student-button { 
+    margin-left: 40px;
+    margin-top: 30px; 
+}

@@ -1,11 +1,13 @@
 #!/usr/bin/php-cgi
 <?php
+// get rid of files in the directories so that there is not any overlap
 $files = glob('similarity/resourcelibrary/TestSet/*'); 
 foreach($files as $file){ 
   if(is_file($file))
     unlink($file); 
     
 }
+
 
 $files2 = glob('similarity/resourcelibrary/processedFiles/*'); 
 foreach($files2 as $file2){ 
@@ -14,18 +16,7 @@ foreach($files2 as $file2){
     
 }
 
-//array_map('unlink', array_filter((array) glob("similarity/resourcelibrary/processedFiles/*")));
-//rmdir('similarity/resourcelibrary/TestSet');
-function rmdir_recursive($dir) {
-    foreach(scandir($dir) as $file) {
-        if ('.' === $file || '..' === $file) continue;
-        if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
-        else unlink("$dir/$file");
-    }
-    rmdir($dir);
-}
 
-rmdir_recursive('similarity/resourcelibrary/TestSet');
 
 
 $files3 = glob('similarity/out/*'); 

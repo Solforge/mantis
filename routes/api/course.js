@@ -1,4 +1,4 @@
-const express = require('express');
+const express =  require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -31,7 +31,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 });
 
 //@route    GET api/course/id 
-//@desc     GET course
+//@desc     GET course by ID
 //@access   private route
 
 router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -60,32 +60,6 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
                         .then(() => res.json({ success: true }))
                         .catch(err => res.status(404)
                             .json({ postNotFound: 'No post found' }))
-
-
-                })
-        })
-});
-
-
-//@route    DELETE api/course/:id 
-//@desc     DELETE course
-//@access   private route
-router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-    Profile.findOne({ user: req.user.id })
-        .then(profile => {
-            Course.findById(req.params.id)
-                .then(course => {
-                    // check for course instructor 
-                    if (course.instructor.toString() !== req.user.id) {
-                        return res.status(401).json({ notAuthorised: 'User not authorized' });
-                    }
-                    //delete 
-                    course.remove()
-                        .then(() => res.json({ success: true }))
-                        .catch(err => res.status(404)
-                            .json({ postNotFound: 'No post found' }))
-
 
                 })
         })

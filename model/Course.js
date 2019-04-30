@@ -20,14 +20,8 @@ const CourseSchema = new Schema({
     },
     students: [
         {
-            type: Schema.ObjectId,
-            ref: 'users'
-        }
-    ],
-    assignments: [
-        {
-            type: Schema.ObjectId,
-            ref: 'assignments'
+            type: Schema.Types.ObjectId,
+            ref: 'users'   
         }
     ]
 })

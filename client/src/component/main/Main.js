@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import ToolBar from '@material-ui/core/Toolbar'
 import { Link } from 'react-router-dom'
+
+import image from '../../resources/image.png';
+
 
 class Header extends React.Component {
   render () {
@@ -25,13 +28,28 @@ class Header extends React.Component {
 
 class Body extends React.Component {
   render () {
-    return <div>{/* TODO!! */}</div>
-  }
-}
-
-class Footer extends React.Component {
-  render () {
-    return <div>{/* TODO!! */}</div>
+    return(
+      <div className='body-container'>
+        <h1>Code With Originality</h1>
+        <p>The world's most effective source code plagiarism checking solution.</p>
+        
+        <div className="body-button-container">
+          <Button 
+            variant="contained" 
+            color="secondary"
+          >
+            Get Started 
+          </Button>
+        </div>
+        
+        
+        <div className="img-container">
+          <div className="avatar">
+              <img src={ image } alt="body-art" />
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
@@ -41,10 +59,9 @@ class Main extends React.Component {
       <div className='Main'>
         <Header />
         <Body />
-        <Footer />
       </div>
     )
   }
 }
 
-export default Main
+export default Main;

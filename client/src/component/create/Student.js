@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 class Student extends React.Component {
 
@@ -25,6 +28,18 @@ class Student extends React.Component {
 
   }
 
+  // componentDidMount() { 
+  //   if (this.props.auth.isAuthenticated) { 
+  //     this.props.history.push('/dashboard');
+  //   }
+  // }
+
+  componentWillReceiveProps(nextProps) { 
+    if (nextProps.errors) {
+      this.setState({errors: nextProps.errors});
+    }
+  }
+
   onChange = (e) => { 
     this.setState({[e.target.name] : e.target.value})
   }
@@ -43,10 +58,11 @@ class Student extends React.Component {
       user_type: 'student'
     };
   
-    axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data));
+    this.props.registerUser(newUser, this.props.history);
+    // axios
+    //   .post("/api/users/register", newUser)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err.response.data));
   }
 
   render() {
@@ -144,4 +160,15 @@ class Student extends React.Component {
   }
 }
 
-export default Student
+Student.propTypes = { 
+  registerUser: PropTypes.func.isRequired, 
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Student));

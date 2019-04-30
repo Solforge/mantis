@@ -1,9 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 class SignIn extends React.Component {
   constructor(props) { 
@@ -17,7 +19,18 @@ class SignIn extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  
+  componentWillReceiveProps(nextProps) { 
+    //is the user authenticated?
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
 
+    if (nextProps.errors) { 
+      this.setState({errors: nextProps.errors});
+    }
+
+  }
 
   onChange = (e) => { 
     this.setState({[e.target.name] : e.target.value})
@@ -25,16 +38,14 @@ class SignIn extends React.Component {
 
   onSubmit(e) { 
     e.preventDefault(); 
-    const newUser = {
+    const userData = {
       email: this.state.email, 
       password: this.state.password
     };
-    axios
-    .post("/api/users/login", newUser)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err.response.data));
-  }
 
+    this.props.loginUser(userData);
+
+  }
 
   render () {
     return (
@@ -88,4 +99,16 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn
+
+SignIn.propTypes = { 
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired, 
+  errors: PropTypes.object.isRequired
+}
+
+const mapsStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapsStateToProps, { loginUser })(SignIn);

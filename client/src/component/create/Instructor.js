@@ -1,9 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
+
 
 class Instructor extends React.Component {
   constructor (props) {
@@ -23,6 +27,12 @@ class Instructor extends React.Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) { 
+    if (nextProps.errors) {
+      this.setState({errors: nextProps.errors});
+    }
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -39,10 +49,9 @@ class Instructor extends React.Component {
       confirmPassword: this.state.confirmPassword,
       user_type: 'instructor'
     }
-    axios
-    .post("/api/users/register", newUser)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err.response.data));
+
+    this.props.registerUser(newUser, this.props.history);
+  
   }
 
   render () {
@@ -157,4 +166,15 @@ class Instructor extends React.Component {
   }
 }
 
-export default Instructor
+Instructor.propTypes = { 
+  registerUser: PropTypes.func.isRequired, 
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Instructor));

@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Token;
 
-/**
- *
- * @author cw08td
- */
 // Corey Wehr 4283123
-// A simple pairs class used by the counting methods to record the combination of letters and frequency together
+// A simple pairs class used to store two strings together. (Though it can work with any combination of variable types, this program only uses it with strings.)
 
 public class Pair<L,R> {
-	    private L l;
-	    private R r;
+	    private L l; // the first variable of the pair
+	    private R r; // the second variable of the pair
 	    
 	    // creates Pair
 	    public Pair(L l, R r){
@@ -23,11 +15,11 @@ public class Pair<L,R> {
 	    }
 	    
 	    // returns requested element
-	    public L getL(){ return l; }
-	    public R getR(){ return r; }
+	    public L getL(){ return l; } // returns first variable
+	    public R getR(){ return r; } // returns second variable
 	    
 	    // changes requested element
-	    public void setL(L l){ this.l = l; }
-	    public void setR(R r){ this.r = r; }
+	    public void setL(L l){ this.l = l; } // changes first variable
+	    public void setR(R r){ this.r = r; } // changes second variable 
 	
 }

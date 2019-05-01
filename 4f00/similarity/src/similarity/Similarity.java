@@ -56,7 +56,7 @@ public class Similarity {
         }
         if(students.size()>1){
             for(int loopout=0;loopout<students.size();loopout++){
-                for(int loopin=0;loopin<students.size();loopin++){
+                for(int loopin=loopout;loopin<students.size();loopin++){
                     double totalpercentage=0;
                     marks.clear();
                     highmatch.clear();

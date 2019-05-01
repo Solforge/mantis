@@ -1,7 +1,6 @@
 package mantis;
 
 import Token.Tokenizer;
-import Token.Zip;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
